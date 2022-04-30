@@ -22,13 +22,13 @@ space = [
 
 A cell value of `False` indicates material absence at the associated matrix index, while `True` indicates material presence.
 
-The output is a STEP file with all the created objects included.
+The output is a ~~STEP~~ STL file with all the created objects included.
 ![image](https://user-images.githubusercontent.com/25392776/166114233-2aac0f45-aada-4aba-ac45-9d8a5019a161.png)
 
 # Open issues
 
 ## Multi-material definition
-This could be achieved by either creating multiple `space` objects, each corresponding to a unique material (and STEP or STL file), or by assigning non-binary integer/real values to the matrix.
+This could be achieved by either creating multiple `space` objects, each corresponding to a unique material (STL file), or by assigning non-binary integer/real values to the matrix.
 
 ## Binary optimization
 Many algorithms have to be tested to evaluate which optimization technique performs best for this problem. A variety of optimization methods can be adapted to alternate binary values in the matrix by setting appropriate constraints, i.e. stating the linear problem in the form of:
@@ -54,4 +54,4 @@ x15+x25+x35+x45+x55 = 1
 ```
 
 ## Solver API
-An E/M solver API shall be made use of/crafted to be called by the optimizer to evaluate the simulated scattering parameter magnitude at the frequency of interest (objective function).
+- [x] ~~An E/M solver API shall be made use of/crafted to be called by the optimizer to evaluate the simulated scattering parameter magnitude at the frequency of interest (objective function)~~ - [Done](https://github.com/0xCoto/topopt/blob/windows/solver_api.py).
