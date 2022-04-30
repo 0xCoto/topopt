@@ -151,4 +151,4 @@ result = gp_minimize(s21_mag, bnds, n_calls=50, verbose=True)
 
 
 def solve():
-	subprocess.call('start /wait C:/Users/coto_/AppData/Local/Programs/Python/Python36/python.exe C:/Users/coto_/Desktop/topopt/cst_api.py', shell=True)
+	subprocess.call('start /wait C:/Users/coto_/AppData/Local/Programs/Python/Python36/python.exe C:/Users/coto_/Desktop/topopt/solver_api.py', shell=True)
