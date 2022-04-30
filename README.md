@@ -3,13 +3,13 @@
 *A topology optimization attempt for RF simulations*
 
 ---
-[`create.py`](https://github.com/0xCoto/topopt/blob/main/create.py) takes a three-dimensional pattern input: in this case, a 5x5x5 binary matrix ([`space`](https://github.com/0xCoto/topopt/blob/main/create.py#L51-L58)), with a resolution of 1x1x1 mm, as defined in [`block_size`](https://github.com/0xCoto/topopt/blob/main/create.py#L60-L61).
+[`create.py`](https://github.com/0xCoto/topopt/blob/main/create.py) takes a three-dimensional pattern input, e.g., a 5x5x5 binary matrix ([`space`](https://github.com/0xCoto/topopt/blob/main/create.py#L51-L58)), with a resolution of 1x1x1 mm, as defined in [`block_size`](https://github.com/0xCoto/topopt/blob/main/create.py#L60-L61).
 
 * Debian branch: https://github.com/0xCoto/topopt/blob/debian
 * Windows branch: https://github.com/0xCoto/topopt/blob/windows
 
 
-#### Default input matrix
+#### Example input matrix
 ```python
 space = [
 [[0,1,0,0,1], [1,0,0,1,0], [0,1,0,1,1], [0,0,0,1,1], [0,1,1,0,1]],
@@ -20,7 +20,7 @@ space = [
 ]
 ```
 
-A cell value of `False` indicates material absence at the associated matrix index, while `True` indicates material presence.
+After [converting to a binary array](https://github.com/0xCoto/topopt/blob/windows/create.py#L105-L112), a cell value of `False` indicates material absence at the associated matrix index, while `True` indicates material presence.
 
 The output is a ~~STEP~~ STL file with all the created objects included.
 ![image](https://user-images.githubusercontent.com/25392776/166114233-2aac0f45-aada-4aba-ac45-9d8a5019a161.png)
