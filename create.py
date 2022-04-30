@@ -31,7 +31,7 @@ App.setActiveDocument("Unnamed")
 App.ActiveDocument=App.getDocument("Unnamed")
 Gui.ActiveDocument=Gui.getDocument("Unnamed")
 
-# Create cube function
+# Cube-creation function
 def create_cube(obj_name: str, pos: list, block_size: list, total_calls: int):
 	App.ActiveDocument.addObject("Part::Box","Box")
 	App.ActiveDocument.ActiveObject.Label = obj_name
@@ -60,12 +60,21 @@ space = [
 # Cube dimensions in mm
 block_size = [1, 1, 1]
 
+# Transform to boolean array to reduce space complexity (overengineering?)
+for x, surface in enumerate(space):
+	for y, line in enumerate(surface):
+		for z, point in enumerate(line):
+			if point == 1:
+				space[x][y][z] = True
+			else:
+				space[x][y][z] = False
+
 total_calls = 0
 for x, surface in enumerate(space):
 	for y, line in enumerate(surface):
 		for z, point in enumerate(line):
 			pos = [x,y,z]
-			if point == 1:
+			if point:
 				#create_cube(''.join(random.choices(string.ascii_lowercase, k=5)), pos) # Redundant: Generate random 5-char string
 				create_cube("Cube", pos, block_size, total_calls)
 				total_calls += 1
@@ -85,7 +94,6 @@ for i in range(total_calls):
 	obj_suffix = f"{i:03}"
 	if obj_suffix == "000":
 		obj_suffix = ""
-	print(obj_suffix)
 	__objs__.append(FreeCAD.getDocument("Unnamed").getObject("Box"+obj_suffix))
 
 app.processEvents()
