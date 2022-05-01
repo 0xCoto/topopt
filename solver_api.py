@@ -1,5 +1,5 @@
-import subprocess
 import os
+import time
 import sys
 sys.path.append('C:\Program Files (x86)\CST Studio Suite 2021\AMD64\python_cst_libraries')
 
@@ -35,12 +35,12 @@ Solid.ChangeMaterial "default:test", "PEC"'''
 de = DesignEnvironment.new()
 cst_file = r'C:/Users/coto_/Desktop/topopt/filter.cst' # replace with actual path on your machine
 prj = de.open_project(cst_file)
-#prj.modeler.add_to_history('stl_import', stl_vba)
+prj.modeler.add_to_history('stl_import', stl_vba)
 
-#prj.modeler.run_solver()
-
+prj.modeler.run_solver()
+time.sleep(2)
 fileName = r'C:/Users/coto_\Desktop/topopt/filter.cst'# cst file
-datafileName = r'./date_export.txt'# name the data file
+datafileName = r'./data.txt'# name the data file
 treeItem ='1D Results\\S-Parameters'  # item to readout (e.g. S-Parameters...)
 nrSampling=1001# no. of sampling
     
@@ -81,5 +81,5 @@ for i, content in enumerate(l):
 file = np.savetxt(datafileName,spara, delimiter='\t',header=headtxt) # header can be removed if needed,
 # delimiter: separation between the data; default:space; here'\t':TAB
 
-#prj.close()
-#de.close()
+prj.close()
+de.close()
