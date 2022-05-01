@@ -117,6 +117,7 @@ def create_stl(space_post):
 
 def solve_and_measure(*params):
 	global goal_frequency
+	print('--- FUNCTION CALLED ---')
 
 	# Define pattern
 	## 0: void
@@ -166,15 +167,17 @@ def solve_and_measure(*params):
 	]
 	#print(space)
 	space_post = space.copy()
+	#print(x1,x2,x3,x4,x5,x6,x7)
+	#print(space_post)
 	try:
 		os.remove('C:/Users/coto_/Desktop/topopt/all.stl')
 	except OSError:
 		pass
-	create_stl(space_post)
 	try:
 		os.remove('C:/Users/coto_/Desktop/topopt/data.txt')
 	except OSError:
 		pass
+	create_stl(space_post)
 	try:
 		os.remove('C:/Users/coto_/Desktop/topopt/freq.cac')
 	except OSError:
@@ -200,9 +203,14 @@ def solve_and_measure(*params):
 					im = float(fileline.split()[2])
 					mag = math.sqrt(re**2 + im**2)
 					mag_db = 20*math.log(mag, 10)
+					print('--- FUNCTION OUTPUT --- [dB]: '+str(mag_db))
 					return (mag_db+0*x1)
 	else:
 		raise ValueError("%s is not a file." % 'C:/Users/coto_/Desktop/topopt/data.txt')
+	try:
+		os.remove('C:/Users/coto_/Desktop/topopt/data.txt')
+	except OSError:
+		pass
 
 params = []
 
@@ -228,13 +236,36 @@ for x, surface in enumerate(space):
 """
 for i in range(1,201):
 	exec('x'+str(i)+'=m.Var(value=1, lb=0, ub=1, integer=True)')
-	params.append('x'+str(i))
+	exec("params.append(x"+str(i)+")")
 
-m.Minimize(solve_and_measure(*params))
+#m.Equation(x1*x2>=0)
+
+m.Obj(solve_and_measure(*params))
 
 m.solve(disp=True)
-#solve_and_measure(*params)
-#solve_and_measure(*params)
 
+"""
+x30 = 0
+x31 = 0
+x32 = 0
+x44 = 0
+x46 = 0
+x49 = 0
+solve_and_measure(*params)
+x60 = 0
+x61 = 0
+x68 = 0
+x81 = 0
+x88 = 0
+x91 = 0
+solve_and_measure(*params)
+x184 = 0
+x155 = 0
+x192 = 0
+x121 = 0
+x114 = 0
+x121 = 0
+solve_and_measure(*params)
+"""
 #for param in params:
 #	print(param)
